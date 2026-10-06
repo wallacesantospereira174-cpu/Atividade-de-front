@@ -45,7 +45,8 @@ subtitulo.innerText = "Confira nossas ofertas imperdíveis!";
 // 05. Insira o aviso de promoção utilizando innerHTML.
 const avisoPromocao = document.querySelector("#aviso-promocao");
 console.log("Aviso de promoção era " , avisoPromocao.innerHTML);
-avisoPromocao.innerHTML = "<strong>Promoção: </strong>Não se preocupe, você vai ter sucesso!";
+let aviso = "<strong>Promoção: </strong>Não se preocupe, você vai ter sucesso!";
+avisoPromocao.innerHTML = aviso;
 
 // 06. Altere a categoria do produto em destaque utilizando
 // textContent.
@@ -101,20 +102,31 @@ estatistica3.innerHTML = "<strong> 100 </strong>";
 // 12. Altere os nomes dos três produtos secundários.
 // Utilize textContent para impedir que possíveis tags sejam
 // interpretadas pelo navegador.
-
+const alteraNomeProduto = document.querySelector("#nome-produto-01");
+alteraNomeProduto.textContent = "Teclado Mecânico Gamer";
+const alteraNomeProduto2 = document.querySelector("#nome-produto-02");
+alteraNomeProduto2.textContent = "Mouse Sem Fio";
+const alteraNomeProduto3 = document.querySelector("#nome-produto-03");
+alteraNomeProduto3.textContent = "Monitor Curvo 27''";
 // 13. Atualize a lista de benefícios utilizando innerHTML.
 // Crie pelo menos três elementos <li> dentro da lista.
-
+const listaBeneficios = document.querySelector("#lista-beneficios");
+console.log("Lista de benefícios era " , listaBeneficios.innerHTML);
+listaBeneficios.innerHTML = `
+  <li>100% de desconto</li>
+  <li>5 dias de entrega</li>
+  <li>Suporte 24/7</li>
+`;  
 // 14. Atualize automaticamente o ano do rodapé utilizando
 // new Date().getFullYear() e textContent.
-
+const anoRodape = document.querySelector(".rodape");
+console.log("Ano do rodapé era " , anoRodape.textContent);
+anoRodape.textContent = new Date().getFullYear();
 // 15. Mostre no Console o outerHTML do texto final do rodapé.
 // Depois, utilize outerHTML para substituir completamente esse
 // elemento por uma nova tag <p> com classe e conteúdo diferentes.
 // Após a substituição, selecione novamente o novo elemento e
 // mostre seu outerHTML no Console.
-
-
 
 
 
