@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Catálogo de Tecnologia</title>
+
+  <style>
+    :root {
+      --fundo: #0d1117;
+      --painel: #161b22;
+      --painel-claro: #21262d;
+      --borda: #30363d;
+      --texto: #e6edf3;
+      --texto-secundario: #8b949e;
+      --azul: #58a6ff;
+      --verde: #3fb950;
+      --amarelo: #d29922;
+      --roxo: #bc8cff;
+      --vermelho: #ff7b72;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: var(--fundo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: 0 auto;
+    }
+
+    .cabecalho {
+      border-bottom: 1px solid var(--borda);
+      background-color: var(--painel);
+    }
+
+    .cabecalho-conteudo {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .logo {
+      color: var(--azul);
+      font-size: 1.4rem;
+      font-weight: bold;
+    }
+
+    .menu {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      color: var(--texto-secundario);
+    }
+
+    .menu a:hover {
+      color: var(--texto);
+    }
+
+    .boas-vindas {
+      padding: 12px 0;
+      color: var(--verde);
+      font-family: Consolas, monospace;
+      text-align: center;
+      border-bottom: 1px solid var(--borda);
+    }
+
+    .hero {
+      padding: 70px 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin-bottom: 16px;
+      color: var(--texto);
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--texto-secundario);
+      font-size: 1.15rem;
+    }
+
+    .aviso {
+      margin-top: 30px;
+      padding: 16px 20px;
+      color: var(--amarelo);
+      background-color: var(--painel);
+      border: 1px solid var(--borda);
+      border-left: 5px solid var(--amarelo);
+      border-radius: 8px;
+    }
+
+    .secao {
+      padding: 30px 0 60px;
+    }
+
+    .titulo-secao {
+      margin-bottom: 24px;
+      font-size: 1.8rem;
+    }
+
+    .produto-destaque {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      overflow: hidden;
+      background-color: var(--painel);
+      border: 1px solid var(--borda);
+      border-radius: 16px;
+    }
+
+    .produto-imagem {
+      min-height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--painel-claro);
+      color: var(--azul);
+      font-size: 7rem;
+    }
+
+    .produto-conteudo {
+      padding: 36px;
+    }
+
+    .categoria {
+      color: var(--roxo);
+      font-family: Consolas, monospace;
+      font-size: 0.95rem;
+    }
+
+    .produto-conteudo h2 {
+      margin: 10px 0;
+      font-size: 2rem;
+    }
+
+    .produto-conteudo p {
+      margin-bottom: 20px;
+      color: var(--texto-secundario);
+    }
+
+    .preco {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--verde);
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .estoque {
+      display: inline-block;
+      padding: 6px 12px;
+      color: var(--amarelo);
+      background-color: rgba(210, 153, 34, 0.12);
+      border: 1px solid var(--amarelo);
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    .estatisticas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .estatistica {
+      padding: 24px;
+      text-align: center;
+      background-color: var(--painel);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+    }
+
+    .estatistica strong {
+      display: block;
+      color: var(--azul);
+      font-size: 2rem;
+    }
+
+    .estatistica span {
+      color: var(--texto-secundario);
+    }
+
+    .produtos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .produto {
+      padding: 24px;
+      background-color: var(--painel);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+    }
+
+    .produto-codigo {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--roxo);
+      font-family: Consolas, monospace;
+    }
+
+    .produto h3 {
+      margin-bottom: 10px;
+    }
+
+    .produto p {
+      min-height: 78px;
+      color: var(--texto-secundario);
+    }
+
+    .produto-valor {
+      display: block;
+      margin-top: 18px;
+      color: var(--verde);
+      font-weight: bold;
+    }
+
+    .beneficios {
+      padding: 30px;
+      background-color: var(--painel);
+      border: 1px solid var(--borda);
+      border-radius: 12px;
+    }
+
+    .beneficios ul {
+      margin-top: 16px;
+      padding-left: 24px;
+      color: var(--texto-secundario);
+    }
+
+    .beneficios li {
+      margin-bottom: 8px;
+    }
+
+    .rodape {
+      margin-top: 40px;
+      padding: 30px 0;
+      color: var(--texto-secundario);
+      text-align: center;
+      border-top: 1px solid var(--borda);
+    }
+
+    @media (max-width: 800px) {
+      .cabecalho-conteudo {
+        padding: 18px 0;
+        flex-direction: column;
+      }
+
+      .produto-destaque {
+        grid-template-columns: 1fr;
+      }
+
+      .produto-imagem {
+        min-height: 220px;
+      }
+
+      .estatisticas,
+      .produtos {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <script src="arquivo.js" defer></script>
+</head>
+
+<body>
+  <header class="cabecalho">
+    <div class="container cabecalho-conteudo">
+      <a href="#" class="logo" id="nome-loja">
+        CodeStore
+      </a>
+
+      <nav aria-label="Navegação principal">
+        <ul class="menu">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#destaque">Destaque</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#beneficios">Benefícios</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <p class="boas-vindas" id="mensagem_boas_vindas">
+    Visitante conectado ao catálogo.
+  </p>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container">
+        <h1 id="titulo-principal">
+          Catálogo de produtos
+        </h1>
+
+        <p id="subtitulo-principal">
+          Produtos para estudantes e profissionais de tecnologia.
+        </p>
+
+        <div class="aviso" id="aviso-promocao">
+          Nenhuma promoção disponível no momento.
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="destaque">
+      <div class="container">
+        <h2 class="titulo-secao" id="titulo-destaque">
+          Produto em destaque
+        </h2>
+
+        <article class="produto-destaque">
+          <div class="produto-imagem" aria-hidden="true">
+            &lt;/&gt;
+          </div>
+
+          <div class="produto-conteudo">
+            <span class="categoria" id="categoria-destaque">
+              Categoria não informada
+            </span>
+
+            <h2 id="nome-produto-destaque">
+              Produto sem nome
+            </h2>
+
+            <p id="descricao-produto-destaque">
+              A descrição do produto ainda não foi cadastrada.
+            </p>
+
+            <span class="preco" id="preco-produto-destaque">
+              R$ 0,00
+            </span>
+
+            <span class="estoque" id="status-estoque">
+              Estoque não consultado
+            </span>
+          </div>
+        </article>
+
+        <div class="estatisticas">
+          <article class="estatistica">
+            <strong id="total-produtos">0</strong>
+            <span>produtos cadastrados</span>
+          </article>
+
+          <article class="estatistica">
+            <strong id="total-categorias">0</strong>
+            <span>categorias disponíveis</span>
+          </article>
+
+          <article class="estatistica">
+            <strong id="total-ofertas">0</strong>
+            <span>ofertas ativas</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="produtos">
+      <div class="container">
+        <h2 class="titulo-secao">Outros produtos</h2>
+
+        <div class="produtos">
+          <article class="produto">
+            <span class="produto-codigo">produto_01</span>
+            <h3 id="nome-produto-01">Teclado básico</h3>
+            <p>
+              Teclado para tarefas escolares e atividades de programação.
+            </p>
+            <span class="produto-valor">R$ 89,90</span>
+          </article>
+
+          <article class="produto">
+            <span class="produto-codigo">produto_02</span>
+            <h3 id="nome-produto-02">Mouse básico</h3>
+            <p>
+              Mouse óptico para navegação, estudos e desenvolvimento.
+            </p>
+            <span class="produto-valor">R$ 49,90</span>
+          </article>
+
+          <article class="produto">
+            <span class="produto-codigo">produto_03</span>
+            <h3 id="nome-produto-03">Monitor básico</h3>
+            <p>
+              Monitor indicado para estudos, programação e produtividade.
+            </p>
+            <span class="produto-valor">R$ 699,90</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="beneficios">
+      <div class="container">
+        <div class="beneficios">
+          <h2 id="titulo-beneficios">
+            Benefícios da loja
+          </h2>
+
+          <ul id="lista-beneficios">
+            <li>Benefícios ainda não cadastrados.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>
+        &copy; <span id="ano-atual">0000</span>
+        <span id="texto-rodape">Catálogo de Tecnologia</span>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
