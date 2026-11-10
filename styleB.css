@@ -1,0 +1,74 @@
+.publicacao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  background-color: #404140;
+  border-radius: 10px;
+  width: 80%;
+}
+.publicacao:hover{
+    border:#0d1a99 2px solid;
+}
+#btn-Curtir {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #1524f9;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 100px;
+}
+#btn-Curtir:hover {
+  background-color: #0d1a99;
+}
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+h1,p{
+   display: flex;
+   justify-content: center;
+  align-items: center;
+}
+#mensagem{
+    color: #cdeb0b;
+    font-size: 20px;
+    text-shadow: #cdeb0b 0px 0px 10px;
+
+}
+.contador{
+    color: #cdeb0b;
+    font-size: 20px;
+    text-shadow: #cdeb0b 0px 0px 10px;
+
+}
+
+#quantidadeCurtidas{
+    color: #160beb;
+    font-size: 20px;
+    text-shadow: #160beb 0px 0px 10px;
+
+}
+
+
+#color{
+    position: relative;
+    bottom: 80px;
+    background-color: #404140;
+    color: #cecece;
+    width: 100px;
+    height: 50px;
+    border-radius:10px ;
+}
+
+#color:hover{
+    background-color: #1524f9;
+}

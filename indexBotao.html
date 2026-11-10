@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade de Curtida</title>
+    <link rel="stylesheet" href="style.css">
+ 
+
+</head>
+<body>
+    <main class="publicacao">
+        <h1>Aprendendo eventos com JavaScript</h1>
+
+        <p>
+            JavaScript permite que uma página responda às ações
+            realizadas pelo usuário.
+        </p>
+
+        <p class="contador">
+            Curtidas:
+            <strong id="quantidadeCurtidas">0</strong>
+        </p>
+
+        <p id="mensagem">
+            Você ainda não curtiu esta publicação.
+        </p>
+
+        <button id="btnCurtir" type="button">
+            Curtir
+        </button>
+        <script >
+        const publicacao = document.querySelector(".publicacao");
+        const quantidadeCurtidas = document.querySelector("#quantidadeCurtidas");
+        const mensagem = document.querySelector("#mensagem");
+        const btnCurtir = document.querySelector("#btnCurtir");
+        
+        let curtiu = false;
+        let curtidas = 0;
+
+      function alternarCurtida() {
+           if (curtiu === false) {
+            curtiu = true;
+            curtidas = 1;
+ 
+            quantidadeCurtidas.textContent = curtidas;
+            mensagem.textContent = "Você curtiu esta publicação!";
+            btnCurtir.textContent = "Descurtir";
+            btnCurtir.classList.add("descurtir");
+            publicacao.classList.add("curtida");
+        } else {
+             curtiu = false;
+             curtidas = 0;
+
+             quantidadeCurtidas.textContent = curtidas;
+             mensagem.textContent = "Você ainda não curtiu esta publicação.";
+             btnCurtir.textContent = "Curtir";
+             btnCurtir.classList.remove("descurtir");
+             publicacao.classList.remove("curtida");
+           }
+}
+
+btnCurtir.addEventListener("click", alternarCurtida);
+    </script>
+    </main>
+
+</body>
+</html>

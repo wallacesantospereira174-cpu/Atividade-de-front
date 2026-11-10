@@ -128,7 +128,3 @@ anoRodape.textContent = new Date().getFullYear();
 // Após a substituição, selecione novamente o novo elemento e
 // mostre seu outerHTML no Console.
 
-
-
-
-

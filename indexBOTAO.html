@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link rel="stylesheet" href="styleB.css">
+  
+</head>
+<body class="Pai-c">
+ <header>
+    <h1 id="titulo">Atividade de Curtida</h1>    
+    <p id="paragrafo">JavaScript permite que uma página responda às ações realizadas pelo usuário.</p>  
+    <button id="color" type="button">
+            clara
+    </button>                     
+ </header>
+ <main class="container-pai">
+    <div class="publicacao">
+        <p class="contador">
+            Curtidas:
+            <strong id="quantidadeCurtidas">0</strong>
+        </p>
+
+        <p id="mensagem">
+            Você ainda não curtiu esta publicação.
+        </p>
+
+        <button id="btn-Curtir" type="button">
+            Curtir
+        </button>
+        <script defer>
+        const btnCurtir = document.querySelector("#btn-Curtir");
+        const mensagem = document.querySelector("#mensagem");
+        const quantidadeCurtidas = document.querySelector("#quantidadeCurtidas");
+        let curtiu = false;
+        let curtidas = 0;
+        function NumeroDeCurtida(){
+            if(curtiu === false){
+            curtiu = true;
+            curtidas = 1;
+            mensagem.textContent = "Você curtiu esta publicação!";
+            quantidadeCurtidas.textContent = curtidas;
+            btnCurtir.textContent = "descurtir";
+            btnCurtir.classList.add("descurtir");
+
+
+            }
+            else{
+            curtiu = false;
+            curtidas = 0;
+            mensagem.textContent = "Você ainda não curtiu esta publicação.";
+            quantidadeCurtidas.textContent = curtidas;
+            btnCurtir.textContent = "Curtir";
+            btnCurtir.classList.remove("descurtir");
+            }
+
+
+        }
+        const Pai_c = document.querySelector(".Pai-c");
+        const color = document.querySelector("#color");
+        const paragrafo = document.querySelector("#paragrafo");
+        const titulo = document.querySelector("#titulo");
+
+         let cor = false;
+        function CordeFundo(){
+            if(cor === false){
+                cor = true;
+                color.textContent = "Black";
+                color.classList.add("clara");
+                 Pai_c.style.backgroundColor = "black";  
+                 paragrafo.style.color = "blue";
+                 titulo.style.color = "blue";
+            }
+            else {
+        
+        cor = false;
+        color.textContent = "White";
+        color.classList.remove("clara");
+        Pai_c.style.backgroundColor = "white"; 
+        paragrafo.style.color = "black";
+        titulo.style.color = "black"
+    }   
+            
+        }
+        color.addEventListener("click", CordeFundo);
+        btnCurtir.addEventListener("click", NumeroDeCurtida);
+
+        
+        
+    </script>
+ </main>
+    
+    
+</body>
+</html>

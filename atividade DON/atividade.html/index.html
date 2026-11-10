@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  
+ <section class="lab" style="padding: 30px; border-radius: 10px; color: rgb(8, 0, 255); display: flex; align-items: center; justify-content: center;">
+    <input type="text" id="campo-lab" placeholder="Enter no texto ">
+    <p id="ajuda">Ola</p>
+ </section>
+  <article >
+
+  </article>
+ <script>
+
+const campoLab = document.querySelector("#campo-lab");
+const ajuda = document.querySelector("#ajuda");
+
+campoLab.addEventListener("focus", function() {
+    ajuda.textContent = "Digite algo no campo pelo teclado!";
+});
+
+campoLab.addEventListener("blur", function() {
+    ajuda.textContent = "Você digitoiu: " + campoLab.value;
+});
+
+const div = document.querySelector(".lab");
+div.addEventListener("focusin", function() {
+    document.getElementById("log").textContent = "O foco está na div"
+});
+
+div.addEventListener("focusout", function() {
+    document.getElementById("log").textContent = "O foco saiu da div"
+})
+ </script>
+    
+</body>
+</html>

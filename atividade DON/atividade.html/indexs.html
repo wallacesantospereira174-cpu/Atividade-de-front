@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body id = "body">
+    <header>
+        <h1>Atividade de DOM</h1>
+        <section>
+            <button id="btn" type="button">whate</button>
+        </section>
+    </header>
+
+    <main> 
+    <section id = "container-pai">
+        <input type="text" id="texte-lab" placeholder="Digite seu nome: ">
+        <p class="text"></p>
+        <p class="text" id="tex"></p>
+    </section>
+    </main>
+
+    <script>
+        const input = document.querySelector("#texte-lab");
+        const text = document.querySelector(".text");
+       
+        text.addEventListener("focus", function() {
+            text.textContent = "Digite seu nome no campo acima!";
+        });
+
+        input.addEventListener("blur", function() {
+            text.textContent = "Olá, " + input.value + "!";
+        });
+      
+        const div = document.querySelector("#container-pai");
+        div.addEventListener("focusin", function() {
+        document.querySelector("#tex").textContent = "O foco está na div"
+        });
+
+       div.addEventListener("focusout", function() {
+       document.querySelector("#tex").textContent = "O foco saiu da div"
+      })
+        
+
+        // Adicionando evento de clique ao botão
+        const button = document.querySelector("#btn");
+        const body = document.querySelector("#body");
+        const h1 = document.querySelector("h1");
+        
+        let click = false;
+        function clicK(){
+            if (click === false){
+                click = true;
+                body.style.backgroundColor = "black";
+                button.textContent = "black";
+                text.style.color = "white";
+                h1.style.color = "white";
+            } else {
+                click = false;
+                body.style.backgroundColor = "white";
+                button.textContent = "whate";
+                text.style.color = "black";
+                h1.style.color = "black";
+            }
+
+        }
+        button.addEventListener("click", clicK);
+    // 
+    </script>
+    
+</body>
+</html>
