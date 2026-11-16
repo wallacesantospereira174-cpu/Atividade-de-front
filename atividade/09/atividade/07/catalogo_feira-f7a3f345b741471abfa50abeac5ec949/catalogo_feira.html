@@ -4,8 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Catálogo da Feira do Campus</title>
-  <script src="catalogo_feira.js" defer></script>
+  <script src=".js" defer></script>
   <style>
+    .oculto {
+      display: none;
+    }
+
+    .campo-ivalido{
+      border-color: #ff7b72;
+    }
+    .modo-edicao{
+      border-color: #bc8cff;
+    }
+
     * { box-sizing: border-box; }
 
     body {
@@ -133,6 +144,9 @@
     @media (max-width: 56rem) {
       main { margin: 1rem auto; }
       .layout { grid-template-columns: 1fr; }
+    }
+    .oculto{
+      color:#ff0000;
     }
   </style>
 </head>

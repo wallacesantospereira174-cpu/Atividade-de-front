@@ -55,26 +55,71 @@ const linhasProdutos = document.querySelector("#linhas-produtos");
 
 let produtos = [];
 let proximoId = 1;
-
+let iidModoEdicao = 0;
 function mostrarProdutos() {
-   
-   linhasProdutos.innerHTML = "";
-   for(const produto of produtos){
-    const precoFinal = calcularPrecoFinal(produto.preco, produto.desconto);
-    const linha = linhas.insertRow();
+
+  linhasProdutos.innerHTML = "";
+
+  for (const produto of produtos) {
+
+    const precoFinal = calcularPrecoFinal(
+      produto.preco,
+      produto.desconto
+    );
+
+    const linha = linhasProdutos.insertRow();
 
     linha.insertCell().textContent = produto.id;
     linha.insertCell().textContent = produto.nome;
     linha.insertCell().textContent = formatarMoeda(produto.preco);
     linha.insertCell().textContent = `${produto.desconto}%`;
     linha.insertCell().textContent = formatarMoeda(precoFinal);
-    
-   }
-   if(produtos.length === 0) {
+
+    // Criando a célula de ações
+    const celulaAcoes = linha.insertCell();
+// Function para editar o produto
+
+function editarProduto(produto) {
+  iidModoEdicao = produto.id;
+  campoNome.value = produto.nome;
+  campoPreco.value = produto.preco;
+  campoDesconto.value = produto.desconto;
+  formProduto.classList.remove("oculto");
+  AlterarEditor.textContent = "Ocultar Formulário";
+  formProduto.classList.add("modo-edicao");
+  Salvar.textContent = "Salvar Alteração";
+  campoNome.focus();
+}
+    // Botão editar
+ const botaoEditar = document.createElement("button");
+  botaoEditar.textContent = "Editar";
+  botaoEditar.type = "button";
+  botaoEditar.addEventListener("click", function() {
+
+  editarProduto(produto);
+  
+});
+
+
+    // Botão excluir
+  const botaoExcluir = document.createElement("button");
+    botaoExcluir.textContent = "Excluir";
+  const indice = produtos.findIndex(p => p.id === produto.id);
+    botaoExcluir.type = "button";
+
+    botaoExcluir.addEventListener("click", function() {
+      excluirProduto(produto.id);
+      produtos.splice(indice, 1);
+    });
+
+    celulaAcoes.append(botaoEditar, botaoExcluir);
+  }
+
+  if (produtos.length === 0) {
     contagem.textContent = "Nenhum produto cadastrado.";
-   }else {
+  } else {
     contagem.textContent = `Produtos cadastrados: ${produtos.length}`;
-   }
+  }
 }
 
 
@@ -89,6 +134,88 @@ function mostrarProdutos() {
 
 formProduto.addEventListener("submit", function (event) {
   event.preventDefault();
+
+
+ const nomeValido = validarNome(campoNome, erroNome);
+ const precoValido = validarPreco(campoPreco, erroPreco);  
+ const descontoValido = validarDesconto(campoDesconto, erroDesconto);
+
+
+ if(!precoValido || !descontoValido || !nomeValido) {
+  return false;
+ }
+ console.log("Todos os campos válidos");
+   
+ // TODO 06 — Cadastre um produto válido.
+ if(idModoEdicao == 0){
+      const produto = {
+        id: proximoId,
+        nome: campoNome.value.trim(),
+        preco: preco,
+        desconto: desconto
+      }
+      produtos.push(produto);
+      proximoId = proximoId + 1;
+      mostrarProdutos();
+    }else{
+      for(const item of produtos){
+        if(item.id == idModoEdicao){
+          item.nome = campoNome.value.trim();
+          item.preco = preco;
+          item.desconto = desconto;
+        }
+      }
+      retorno.textContent = campoNome.value.trim() + "editado com sucesso!";
+      idModoEdicao = 0;
+      mostrarProdutos ();
+
+    }
+ 
+ 
+
+
+
+ 
+});
+// TODO 03 — Valide o preço.
+// Verifique se o campo foi preenchido antes de converter para número.
+// Aceite preço igual ou maior que zero. Se estiver vazio ou inválido,
+// mostre "Use um preço a partir de 0." em #erro-preco.
+// Se estiver válido, apague a mensagem desse campo.
+function validarPreco(CampoPreco, erroPreco) {
+  const preco = campoPreco.value.trim();
+  if (preco === "" || Number(preco)  < 0 || isNaN(preco)) {
+    campoPreco.classList.add("campo-invalido");
+    erroPreco.textContent = "Use um preço a partir de 0.";
+
+    return false;
+  }
+  erroPreco.textContent = "";
+  return true;
+}
+//nome.length < 2 ||
+
+function validarNome(campoNome, erroNome) {
+  const nome = campoNome.value.trim();
+  if (nome.length < 2 || !isNaN(nome)) {
+    erroNome.textContent = "Digite pelo menos 2 caracteres.";
+    return false;
+  }
+  erroNome.textContent = "";
+  return true;
+}
+
+function validarDesconto(campoDesconto, erroDesconto) {
+  const desconto = campoDesconto.value.trim();    
+  if (desconto === "" || Number(desconto) < 0 || Number(desconto) > 100 || isNaN(desconto)) {
+    
+    campoDesconto.classList.add("campo-invalido");
+    erroDesconto.textContent = "Use um desconto de 0 a 100.";
+    return false;
+  }   
+  erroDesconto.textContent = "";
+  return true;
+}
 
 
  // const nome = campoNome.value.trim();
@@ -122,69 +249,6 @@ formProduto.addEventListener("submit", function (event) {
  // }
 
  // Forma que eu fiz de uma forma mais profissional e faacil ler e manter o código passando a responsabilidade para uma função que valida o preço e outra que valida o desconto.
-
- const nomeValido = validarNome(campoNome, erroNome);
- const precoValido = validarPreco(campoPreco, erroPreco);  
- const descontoValido = validarDesconto(campoDesconto, erroDesconto);
-
-
- if(!precoValido || !descontoValido || !nomeValido) {
-  return false;
- }
- console.log("Todos os campos válidos");
-   
- // TODO 06 — Cadastre um produto válido.
-
- const produto = {
-  id : proximoId,
-  nome : campoNome.value.trim(),
-  preco : Number(campoPreco.value),
-  desconto : Number(campoDesconto.value)
- }
- produtos.push(produto);
- proximoId++;
- console.log(produtos);
-
- mostrarProdutos ();
-  
-});
-// TODO 03 — Valide o preço.
-// Verifique se o campo foi preenchido antes de converter para número.
-// Aceite preço igual ou maior que zero. Se estiver vazio ou inválido,
-// mostre "Use um preço a partir de 0." em #erro-preco.
-// Se estiver válido, apague a mensagem desse campo.
-function validarPreco(CampoPreco, erroPreco) {
-  const preco = campoPreco.value.trim();
-  if (preco === "" || Number(preco)  < 0 || isNaN(preco)) {
-    erroPreco.textContent = "Use um preço a partir de 0.";
-    return false;
-  }
-  erroPreco.textContent = "";
-  return true;
-}
-//nome.length < 2 ||
-
-function validarNome(campoNome, erroNome) {
-  const nome = campoNome.value.trim();
-  if (nome.length < 2 || !isNaN(nome)) {
-    erroNome.textContent = "Digite pelo menos 2 caracteres.";
-    return false;
-  }
-  erroNome.textContent = "";
-  return true;
-}
-
-function validarDesconto(campoDesconto, erroDesconto) {
-  const desconto = campoDesconto.value.trim();    
-  if (desconto === "" || Number(desconto) < 0 || Number(desconto) > 100 || isNaN(desconto)) {
-    erroDesconto.textContent = "Use um desconto de 0 a 100.";
-    return false;
-  }   
-  erroDesconto.textContent = "";
-  return true;
-}
-
-
 
 
 // TODO 04 — Valide o desconto.
